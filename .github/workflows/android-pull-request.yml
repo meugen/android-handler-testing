@@ -13,8 +13,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Log gpg version
-        run: gpg --version
       - name: Decrypt keystores
         run: ./scripts/decrypt_debug_keystore.sh \
           && ./scripts/decrypt_alpha_keystore.sh \
