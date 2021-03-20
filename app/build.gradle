@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+def signing = new Properties()
+file('../keystore/signing.properties').withInputStream { signing.load(it) }
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -16,10 +19,47 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file('../keystore/handler.debug.jks')
+            storePassword signing['handler.debug.store_password']
+            keyAlias signing['handler.debug.key']
+            keyPassword signing['handler.debug.key_password']
+        }
+        alpha {
+            storeFile file('../keystore/handler.alpha.jks')
+            storePassword signing['handler.alpha.store_password']
+            keyAlias signing['handler.alpha.key']
+            keyPassword signing['handler.alpha.key_password']
+        }
         release {
+            storeFile file('../keystore/handler.release.jks')
+            storePassword signing['handler.release.store_password']
+            keyAlias signing['handler.release.key']
+            keyPassword signing['handler.release.key_password']
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+        alpha {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.alpha
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
         }
     }
     compileOptions {
@@ -33,7 +73,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
