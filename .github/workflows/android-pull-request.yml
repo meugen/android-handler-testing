@@ -16,15 +16,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Decrypt keystores
-        run:
-          - ./scripts/decrypt_debug_keystore.sh
-          - ./scripts/decrypt_alpha_keystore.sh
-          - ./scripts/decrypt_release_keystore.sh
-          - ./scripts/decrypt_properties_keystore.sh
+        run: ./scripts/decrypt_debug_keystore.sh \
+          && ./scripts/decrypt_alpha_keystore.sh \
+          && ./scripts/decrypt_release_keystore.sh \
+          && ./scripts/decrypt_properties_keystore.sh
       - name: Run tests
-        run:
-          - ./gradlew app:testDebug
+        run: ./gradlew app:testDebug
       - name: Build alpha and release
-        run:
-          - ./gradlew app:assembleAlpha
-          - ./gradlew app:assembleRelease
+        run: ./gradlew app:assembleAlpha \
+          && ./gradlew app:assembleRelease
