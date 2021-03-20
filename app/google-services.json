@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "431931058442",
+    "project_id": "handler-testing",
+    "storage_bucket": "handler-testing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431931058442:android:dce190efbada8ceee172f3",
+        "android_client_info": {
+          "package_name": "meugeninua.android.handler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431931058442-g38cta39742um03au7thsolf4v6rddee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJDFUL7IvdaZT7YHnUpODqVUF-QoewVqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431931058442-g38cta39742um03au7thsolf4v6rddee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
