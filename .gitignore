@@ -85,3 +85,5 @@ lint/tmp/
 # lint/reports/
 
 .idea/
+keystore/*.jks
+keystore/signing.properties
