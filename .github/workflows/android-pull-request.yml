@@ -20,6 +20,11 @@ jobs:
           && ./scripts/decrypt_alpha_keystore.sh \
           && ./scripts/decrypt_release_keystore.sh \
           && ./scripts/decrypt_properties_keystore.sh
+        env:
+          KEYSTORE_DEBUG_PASSPHRASE: ${{ secrets.KEYSTORE_DEBUG_PASSPHRASE }}
+          KEYSTORE_ALPHA_PASSPHRASE: ${{ secrets.KEYSTORE_ALPHA_PASSPHRASE }}
+          KEYSTORE_RELEASE_PASSPHRASE: ${{ secrets.KEYSTORE_RELEASE_PASSPHRASE }}
+          KEYSTORE_PROPERTIES_PASSPHRASE: ${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}
       - name: Run tests
         run: ./gradlew app:testDebug
       - name: Build alpha and release
