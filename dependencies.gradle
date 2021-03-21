@@ -1,0 +1,10 @@
+def dagger_version = '2.33'
+
+ext {
+    dagger = [
+            main: "com.google.dagger:dagger:$dagger_version",
+            android: "com.google.dagger:dagger-android-support:$dagger_version",
+            compiler: "com.google.dagger:dagger-compiler:$dagger_version",
+            androidCompiler: "com.google.dagger:dagger-android-processor:$dagger_version"
+    ]
+}
