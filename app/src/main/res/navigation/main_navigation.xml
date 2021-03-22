@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/comingSoonFragment">
+
+    <fragment
+        android:name="meugeninua.android.handler.ui.fragments.comingsoon.ComingSoonFragment"
+        android:id="@+id/comingSoonFragment"
+        tools:layout="@layout/fragment_coming_soon"
+        android:label="Coming soon">
+
+        <argument
+            android:name="message"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="Coming soon"/>
+    </fragment>
+
+</navigation>

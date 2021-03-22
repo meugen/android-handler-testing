@@ -2,10 +2,12 @@ package meugeninua.android.handler.ui.fragments.common.binding;
 
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -61,5 +63,14 @@ public class Binding implements LifecycleObserver {
 
     public boolean has(@IdRes int viewId) {
         return find(viewId) != null;
+    }
+
+    public void setText(@IdRes int viewId, @StringRes int textId) {
+        setText(viewId, rootView.getContext().getText(textId));
+    }
+
+    public void setText(@IdRes int viewId, @Nullable CharSequence text) {
+        TextView textView = get(viewId);
+        textView.setText(text);
     }
 }

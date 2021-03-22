@@ -4,9 +4,14 @@ import android.app.Application;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.support.AndroidSupportInjectionModule;
 import meugeninua.android.handler.app.HandlerApp;
+import meugeninua.android.handler.app.di.ui.UiComponent;
 
-@Component
+@Component(modules = {
+        AndroidSupportInjectionModule.class,
+        UiComponent.class
+})
 public interface AppComponent {
 
     void inject(HandlerApp app);

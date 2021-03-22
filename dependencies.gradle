@@ -1,4 +1,5 @@
 def dagger_version = '2.33'
+def navigation_version = '2.3.4'
 
 ext {
     dagger = [
@@ -6,5 +7,12 @@ ext {
             android: "com.google.dagger:dagger-android-support:$dagger_version",
             compiler: "com.google.dagger:dagger-compiler:$dagger_version",
             androidCompiler: "com.google.dagger:dagger-android-processor:$dagger_version"
+    ]
+    navigation = [
+            fragment: "androidx.navigation:navigation-fragment:$navigation_version",
+            ui: "androidx.navigation:navigation-ui:$navigation_version"
+    ]
+    utils = [
+            timber: "com.jakewharton.timber:timber:4.7.1"
     ]
 }
