@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData;
 
 public interface IViewModel {
 
-    LiveData<Object> getLiveData();
+    LiveData<Object> getLiveEvent();
 }

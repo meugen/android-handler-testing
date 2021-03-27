@@ -60,7 +60,7 @@ public abstract class BaseFragment extends Fragment {
                     new StartStopObserver((OnStartStopListener) viewModel)
             );
         }
-        viewModel.getLiveData().observe(getViewLifecycleOwner(), this::onEvent);
+        viewModel.getLiveEvent().observe(getViewLifecycleOwner(), this::onEvent);
     }
 }
 
