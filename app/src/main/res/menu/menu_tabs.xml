@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/countriesFragment"
+        android:title="@string/menu_item_countries"
+        android:icon="@drawable/baseline_flag_black_18"/>
+    <item
+        android:id="@+id/citiesFragment"
+        android:title="@string/menu_item_cities"
+        android:icon="@drawable/baseline_home_work_black_18"/>
+</menu>

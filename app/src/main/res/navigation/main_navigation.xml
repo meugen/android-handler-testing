@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/countriesFragment">
+
+    <fragment
+        android:name="meugeninua.android.handler.ui.fragments.countries.CountriesFragment"
+        android:id="@id/countriesFragment"
+        tools:layout="@layout/fragment_coming_soon"
+        android:label="Countries">
+
+        <argument
+            android:name="message"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="Countries"/>
+    </fragment>
+
+    <fragment
+        android:name="meugeninua.android.handler.ui.fragments.cities.CitiesFragment"
+        android:id="@+id/citiesFragment"
+        tools:layout="@layout/fragment_coming_soon"
+        android:label="Cities">
+
+        <argument
+            android:name="message"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="Cities"/>
+    </fragment>
+
+</navigation>
