@@ -24,6 +24,6 @@ jobs:
           KEYSTORE_RELEASE_PASSPHRASE: ${{ secrets.KEYSTORE_RELEASE_PASSPHRASE }}
           KEYSTORE_PROPERTIES_PASSPHRASE: ${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}
       - name: Run tests
-        run: ./gradlew app:testDebug
+        run: ./scripts/run_tests.sh
       - name: Build alpha and release
-        run: ./gradlew app:assembleAlpha && ./gradlew app:assembleRelease
+        run: ./scripts/assemble_alpha_and_release.sh
