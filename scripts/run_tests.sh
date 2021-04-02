@@ -1,5 +1,5 @@
 #!/bin/bash
-./gradlew utils:testDebug || exit 1
+./gradlew utils:test || exit 1
 
 ./gradlew async-executors:testDebug || exit 1
 ./gradlew async-rxjava:testDebug || exit 1
