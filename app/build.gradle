@@ -61,6 +61,7 @@ android {
             firebaseAppDistribution {
                 testers="meugen.82@gmail.com"
             }
+            matchingFallbacks = ['release']
         }
         release {
             minifyEnabled true
