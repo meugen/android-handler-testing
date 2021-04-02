@@ -70,6 +70,26 @@ android {
             debuggable false
         }
     }
+
+    flavorDimensions 'async'
+    productFlavors {
+        executors {
+            dimension 'async'
+            versionNameSuffix '-executors'
+            applicationIdSuffix '.executors'
+        }
+        rxjava {
+            dimension 'async'
+            versionNameSuffix '-rxjava'
+            applicationIdSuffix '.rxjava'
+        }
+        coroutines {
+            dimension 'async'
+            versionNameSuffix '-coroutines'
+            applicationIdSuffix '.coroutines'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -77,6 +97,11 @@ android {
 }
 
 dependencies {
+
+    implementation project(':utils')
+    executorsImplementation project(':async-executors')
+    rxjavaImplementation project(':async-rxjava')
+    coroutinesImplementation project(':async-coroutines')
 
     implementation dagger.main
     implementation dagger.android

@@ -32,7 +32,7 @@ ext {
             android: "io.reactivex.rxjava3:rxandroid:3.0.0"
     ]
     coroutines = [
-            core: "org.jetbrans.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     ]
     test = [
