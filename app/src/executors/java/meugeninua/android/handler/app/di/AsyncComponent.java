@@ -9,13 +9,12 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import meugeninua.android.handler.async.executors.ExecutorAsyncHandler;
-import meugeninua.android.handler.utils.AsyncHandler;
+import meugeninua.android.handler.utils.async.AsyncHandler;
 
 @Module
 public class AsyncComponent {
 
     @Provides
-    @Singleton
     public static AsyncHandler provideAsyncHandler(@NonNull Application app) {
         return new ExecutorAsyncHandler(app);
     }

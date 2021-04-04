@@ -40,6 +40,11 @@ public class Binding implements LifecycleObserver {
         owner.getLifecycle().removeObserver(this);
     }
 
+    @NonNull
+    public View getView() {
+        return Objects.requireNonNull(rootView);
+    }
+
     @Nullable
     private View find(@IdRes int viewId) {
         if (rootView == null) {
@@ -65,12 +70,33 @@ public class Binding implements LifecycleObserver {
         return find(viewId) != null;
     }
 
-    public void setText(@IdRes int viewId, @StringRes int textId) {
-        setText(viewId, rootView.getContext().getText(textId));
-    }
+    public static class Utils {
 
-    public void setText(@IdRes int viewId, @Nullable CharSequence text) {
-        TextView textView = get(viewId);
-        textView.setText(text);
+        public static void setOnClickListener(
+            @NonNull Binding binding,
+            @IdRes int viewId,
+            View.OnClickListener listener
+        ) {
+            View view = binding.get(viewId);
+            view.setOnClickListener(listener);
+        }
+
+        public static void setText(
+            @NonNull Binding binding,
+            @IdRes int viewId,
+            @StringRes int textId
+        ) {
+            CharSequence text = binding.getView().getContext().getText(textId);
+            setText(binding, viewId, text);
+        }
+
+        public static void setText(
+            @NonNull Binding binding,
+            @IdRes int viewId,
+            @Nullable CharSequence text
+        ) {
+            TextView textView = binding.get(viewId);
+            textView.setText(text);
+        }
     }
 }

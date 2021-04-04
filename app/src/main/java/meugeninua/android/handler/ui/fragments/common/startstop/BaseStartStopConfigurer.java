@@ -1,6 +1,7 @@
 package meugeninua.android.handler.ui.fragments.common.startstop;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 
 import meugeninua.android.handler.ui.fragments.common.vm.SingleLiveEvent;
 
@@ -8,7 +9,7 @@ public abstract class BaseStartStopConfigurer implements StartStopConfigurer {
 
     private final StartStopConfigurer baseConfigurer;
 
-    public BaseStartStopConfigurer(StartStopConfigurer baseConfigurer) {
+    public BaseStartStopConfigurer(@NonNull StartStopConfigurer baseConfigurer) {
         this.baseConfigurer = baseConfigurer;
     }
 

@@ -9,9 +9,9 @@ import meugeninua.android.handler.app.HandlerApp;
 import meugeninua.android.handler.app.di.ui.UiComponent;
 
 @Component(modules = {
-        AndroidSupportInjectionModule.class,
-        UiComponent.class,
-        AsyncComponent.class
+    AndroidSupportInjectionModule.class,
+    UiComponent.class,
+    AsyncComponent.class
 })
 public interface AppComponent {
 
