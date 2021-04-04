@@ -4,8 +4,6 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import meugeninua.android.handler.async.executors.ExecutorAsyncHandler;

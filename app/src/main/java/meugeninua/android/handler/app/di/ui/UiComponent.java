@@ -7,7 +7,6 @@ import meugeninua.android.handler.app.di.ui.fragments.CountriesComponent;
 import meugeninua.android.handler.app.di.ui.fragments.TestFirstComponent;
 import meugeninua.android.handler.app.di.ui.fragments.TestMainComponent;
 import meugeninua.android.handler.app.di.ui.fragments.TestSecondComponent;
-import meugeninua.android.handler.ui.fragments.test.second.TestSecondViewModel;
 
 @Module(includes = {
     ComingSoonComponent.class,
