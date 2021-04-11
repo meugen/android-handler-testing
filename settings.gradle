@@ -1,2 +1,7 @@
+include ':repository'
+include ':async-coroutines'
+include ':async-rxjava'
+include ':async-executors'
+include ':utils'
 include ':app'
 rootProject.name = "Handler testing"

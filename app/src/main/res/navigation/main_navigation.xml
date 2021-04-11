@@ -9,26 +9,18 @@
         android:name="meugeninua.android.handler.ui.fragments.countries.CountriesFragment"
         android:id="@id/countriesFragment"
         tools:layout="@layout/fragment_coming_soon"
-        android:label="Countries">
-
-        <argument
-            android:name="message"
-            app:argType="string"
-            app:nullable="false"
-            android:defaultValue="Countries"/>
-    </fragment>
+        android:label="Countries"/>
 
     <fragment
         android:name="meugeninua.android.handler.ui.fragments.cities.CitiesFragment"
         android:id="@+id/citiesFragment"
         tools:layout="@layout/fragment_coming_soon"
-        android:label="Cities">
+        android:label="Cities"/>
 
-        <argument
-            android:name="message"
-            app:argType="string"
-            app:nullable="false"
-            android:defaultValue="Cities"/>
-    </fragment>
+    <fragment
+        android:name="meugeninua.android.handler.ui.fragments.test.main.TestMainFragment"
+        android:id="@+id/testMainFragment"
+        tools:layout="@layout/fragment_test_main"
+        android:label="Test"/>
 
 </navigation>

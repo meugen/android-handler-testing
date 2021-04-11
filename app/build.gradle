@@ -20,7 +20,10 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'BASE_URL', '"https://api.meugen.in.ua/"'
     }
 
     signingConfigs {
@@ -61,6 +64,7 @@ android {
             firebaseAppDistribution {
                 testers="meugen.82@gmail.com"
             }
+            matchingFallbacks = ['release']
         }
         release {
             minifyEnabled true
@@ -70,13 +74,40 @@ android {
             debuggable false
         }
     }
+
+    flavorDimensions 'async'
+    productFlavors {
+        executors {
+            dimension 'async'
+            versionNameSuffix '-executors'
+            applicationIdSuffix '.executors'
+        }
+        rxjava {
+            dimension 'async'
+            versionNameSuffix '-rxjava'
+            applicationIdSuffix '.rxjava'
+        }
+        coroutines {
+            dimension 'async'
+            versionNameSuffix '-coroutines'
+            applicationIdSuffix '.coroutines'
+        }
+    }
+
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
+
+    implementation project(':repository')
+    implementation project(':utils')
+    executorsImplementation project(':async-executors')
+    rxjavaImplementation project(':async-rxjava')
+    coroutinesImplementation project(':async-coroutines')
 
     implementation dagger.main
     implementation dagger.android
@@ -86,16 +117,19 @@ dependencies {
     implementation navigation.fragment
     implementation navigation.ui
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation androidx.appcompat
+    implementation androidx.material
+    implementation androidx.constraintlayout
 
-    implementation platform('com.google.firebase:firebase-bom:26.7.0')
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation platform(firebase.bom)
+    implementation firebase.analytics
 
+    implementation retrofit.core
+    implementation retrofit.logging
     implementation utils.timber
+    coreLibraryDesugaring utils.desugar
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation test.junit
+    androidTestImplementation test.androidxExt
+    androidTestImplementation test.androidxEspresso
 }

@@ -10,7 +10,9 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
+import meugeninua.android.handler.BuildConfig;
 import meugeninua.android.handler.app.di.DaggerAppComponent;
+import timber.log.Timber;
 
 public class HandlerApp extends Application implements HasAndroidInjector {
 
@@ -34,6 +36,9 @@ public class HandlerApp extends Application implements HasAndroidInjector {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
         DaggerAppComponent.factory()
                 .create(this).inject(this);
     }

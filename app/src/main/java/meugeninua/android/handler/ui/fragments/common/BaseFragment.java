@@ -3,6 +3,7 @@ package meugeninua.android.handler.ui.fragments.common;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import meugeninua.android.handler.ui.fragments.common.actions.BindingAction;
 import meugeninua.android.handler.ui.fragments.common.actions.ContextAction;
 import meugeninua.android.handler.ui.fragments.common.actions.FragmentAction;
 import meugeninua.android.handler.ui.fragments.common.binding.Binding;
+import meugeninua.android.handler.ui.fragments.common.binding.OnBackClickListener;
 import meugeninua.android.handler.ui.fragments.common.startstop.OnStartStopListener;
 import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 
@@ -55,12 +57,25 @@ public abstract class BaseFragment extends Fragment {
         binding.onAttachView(getViewLifecycleOwner(), view);
 
         IViewModel viewModel = viewModel();
-        if (viewModel instanceof OnStartStopListener) {
+        setupStartStopListener(viewModel);
+        setupBackClickListener(viewModel);
+        viewModel.getLiveEvent().observe(getViewLifecycleOwner(), this::onEvent);
+    }
+
+    private void setupStartStopListener(Object listener) {
+        if (listener instanceof OnStartStopListener) {
             getViewLifecycleOwner().getLifecycle().addObserver(
-                    new StartStopObserver((OnStartStopListener) viewModel)
+                new StartStopObserver((OnStartStopListener) listener)
             );
         }
-        viewModel.getLiveEvent().observe(getViewLifecycleOwner(), this::onEvent);
+    }
+
+    private void setupBackClickListener(Object listener) {
+        if (listener instanceof OnBackClickListener) {
+            requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(), new BackPressedCallback((OnBackClickListener) listener)
+            );
+        }
     }
 }
 
@@ -79,5 +94,20 @@ class StartStopObserver implements LifecycleEventObserver {
         } else if (event == Lifecycle.Event.ON_STOP) {
             listener.onStop();
         }
+    }
+}
+
+class BackPressedCallback extends OnBackPressedCallback {
+
+    private final OnBackClickListener listener;
+
+    public BackPressedCallback(OnBackClickListener listener) {
+        super(true);
+        this.listener = listener;
+    }
+
+    @Override
+    public void handleOnBackPressed() {
+        listener.onBackClick();
     }
 }

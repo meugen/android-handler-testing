@@ -22,8 +22,8 @@ jobs:
           KEYSTORE_ALPHA_PASSPHRASE: ${{ secrets.KEYSTORE_ALPHA_PASSPHRASE }}
           KEYSTORE_PROPERTIES_PASSPHRASE: ${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}
       - name: Build alpha
-        run: ./gradlew app:assembleAlpha
+        run: ./gradlew app:assembleExecutorsAlpha
       - name: Upload to firebase
-        run: ./gradlew app:appDistributionUploadAlpha
+        run: ./gradlew app:appDistributionUploadExecutorsAlpha
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
