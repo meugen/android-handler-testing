@@ -26,7 +26,8 @@ ext {
             ui: "androidx.navigation:navigation-ui:$navigation_version"
     ]
     utils = [
-            timber: "com.jakewharton.timber:timber:4.7.1"
+            timber: "com.jakewharton.timber:timber:4.7.1",
+            desugar: "com.android.tools:desugar_jdk_libs:1.1.5"
     ]
     retrofit = [
             core: "com.squareup.retrofit2:retrofit:$retrofit_version",

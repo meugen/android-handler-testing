@@ -20,6 +20,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'BASE_URL', '"https://api.meugen.in.ua/"'
     }
@@ -93,6 +95,7 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -124,6 +127,7 @@ dependencies {
     implementation retrofit.core
     implementation retrofit.logging
     implementation utils.timber
+    coreLibraryDesugaring utils.desugar
 
     testImplementation test.junit
     androidTestImplementation test.androidxExt
