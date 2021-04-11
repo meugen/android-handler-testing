@@ -1,3 +1,4 @@
+include ':repository'
 include ':async-coroutines'
 include ':async-rxjava'
 include ':async-executors'

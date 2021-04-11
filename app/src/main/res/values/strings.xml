@@ -3,6 +3,7 @@
 
     <string name="menu_item_countries">Countries</string>
     <string name="menu_item_cities">Cities</string>
+    <string name="menu_item_test">Test</string>
 
     <string name="message_coming_soon">Coming soon</string>
 </resources>

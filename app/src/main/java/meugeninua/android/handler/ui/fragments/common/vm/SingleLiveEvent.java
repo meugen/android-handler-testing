@@ -15,8 +15,8 @@ public class SingleLiveEvent<T> extends MediatorLiveData<T> {
 
     @Override
     public void setValue(T value) {
-        super.setValue(value);
         pending.set(true);
+        super.setValue(value);
     }
 
     @Override

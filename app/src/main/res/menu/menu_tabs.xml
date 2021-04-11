@@ -8,4 +8,8 @@
         android:id="@+id/citiesFragment"
         android:title="@string/menu_item_cities"
         android:icon="@drawable/baseline_home_work_black_18"/>
+    <item
+        android:id="@+id/testMainFragment"
+        android:title="@string/menu_item_test"
+        android:icon="@drawable/round_settings_black_18"/>
 </menu>

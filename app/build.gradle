@@ -21,6 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'BASE_URL', '"https://api.meugen.in.ua/"'
     }
 
     signingConfigs {
@@ -99,6 +100,7 @@ android {
 
 dependencies {
 
+    implementation project(':repository')
     implementation project(':utils')
     executorsImplementation project(':async-executors')
     rxjavaImplementation project(':async-rxjava')
@@ -119,6 +121,8 @@ dependencies {
     implementation platform(firebase.bom)
     implementation firebase.analytics
 
+    implementation retrofit.core
+    implementation retrofit.logging
     implementation utils.timber
 
     testImplementation test.junit

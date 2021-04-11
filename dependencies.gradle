@@ -1,6 +1,7 @@
 def dagger_version = '2.33'
 def navigation_version = '2.3.4'
 def coroutines_version = '1.4.3'
+def retrofit_version = '2.9.0'
 
 ext {
     androidx = [
@@ -26,6 +27,11 @@ ext {
     ]
     utils = [
             timber: "com.jakewharton.timber:timber:4.7.1"
+    ]
+    retrofit = [
+            core: "com.squareup.retrofit2:retrofit:$retrofit_version",
+            gson: "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            logging: "com.squareup.okhttp3:logging-interceptor:3.14.9"
     ]
     rx = [
             java: "io.reactivex.rxjava3:rxjava:3.0.11",
