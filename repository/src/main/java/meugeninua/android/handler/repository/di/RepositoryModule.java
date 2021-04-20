@@ -4,8 +4,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.repository.Repository;
 import meugeninua.android.handler.repository.apis.Api;
+import meugeninua.android.handler.repository.impls.RefHolderRepositoryImpl;
 import meugeninua.android.handler.repository.impls.RepositoryImpl;
 import meugeninua.android.handler.utils.config.AppConfig;
 import okhttp3.OkHttpClient;
@@ -49,5 +51,11 @@ public class RepositoryModule {
     @Provides
     public static Repository provideRepository(Api api) {
         return new RepositoryImpl(api);
+    }
+
+    @Singleton
+    @Provides
+    public static RefHolderRepository provideRefHolderRepository() {
+        return new RefHolderRepositoryImpl();
     }
 }

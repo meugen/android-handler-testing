@@ -17,6 +17,7 @@ import meugeninua.android.handler.ui.fragments.common.actions.ActivityAction;
 import meugeninua.android.handler.ui.fragments.common.actions.BindingAction;
 import meugeninua.android.handler.ui.fragments.common.actions.ContextAction;
 import meugeninua.android.handler.ui.fragments.common.actions.FragmentAction;
+import meugeninua.android.handler.ui.fragments.common.actions.ViewModelAction;
 import meugeninua.android.handler.ui.fragments.common.binding.Binding;
 import meugeninua.android.handler.ui.fragments.common.binding.OnBackClickListener;
 import meugeninua.android.handler.ui.fragments.common.startstop.OnStartStopListener;
@@ -48,8 +49,12 @@ public abstract class BaseFragment extends Fragment {
             ((FragmentAction) event).onAction(this);
         } else if (event instanceof ActivityAction) {
             ((ActivityAction) event).onAction(requireActivity());
+        } else if (event instanceof ViewModelAction) {
+            onViewModelEvent((ViewModelAction<?>) event);
         }
     }
+
+    protected void onViewModelEvent(ViewModelAction<?> event) { }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

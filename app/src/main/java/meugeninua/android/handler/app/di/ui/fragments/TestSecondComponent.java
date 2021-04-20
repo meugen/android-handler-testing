@@ -12,6 +12,7 @@ import androidx.savedstate.SavedStateRegistryOwner;
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
+import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.repository.Repository;
 import meugeninua.android.handler.ui.fragments.test.second.TestSecondFragment;
 import meugeninua.android.handler.ui.fragments.test.second.TestSecondViewModel;
@@ -31,10 +32,11 @@ class TestSecondModule {
     public static TestSecondViewModel viewModel(
         TestSecondFragment fragment,
         Repository repository,
+        RefHolderRepository refHolderRepository,
         AsyncHandler asyncHandler
     ) {
         ViewModelProvider.Factory factory = new TestSecondViewModelFactory(
-            fragment, repository, asyncHandler
+            fragment, repository, refHolderRepository, asyncHandler
         );
         return new ViewModelProvider(fragment, factory).get(TestSecondViewModel.class);
     }
@@ -43,15 +45,18 @@ class TestSecondModule {
 class TestSecondViewModelFactory extends AbstractSavedStateViewModelFactory {
 
     private final Repository repository;
+    private final RefHolderRepository refHolderRepository;
     private final AsyncHandler asyncHandler;
 
     public TestSecondViewModelFactory(
         SavedStateRegistryOwner registryOwner,
         Repository repository,
+        RefHolderRepository refHolderRepository,
         AsyncHandler asyncHandler
     ) {
         super(registryOwner, Bundle.EMPTY);
         this.repository = repository;
+        this.refHolderRepository = refHolderRepository;
         this.asyncHandler = asyncHandler;
     }
 
@@ -62,6 +67,6 @@ class TestSecondViewModelFactory extends AbstractSavedStateViewModelFactory {
         @NonNull Class<T> modelClass,
         @NonNull SavedStateHandle handle
     ) {
-        return (T) new TestSecondViewModel(asyncHandler, repository, handle);
+        return (T) new TestSecondViewModel(asyncHandler, repository, refHolderRepository, handle);
     }
 }

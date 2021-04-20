@@ -1,4 +1,4 @@
-package meugeninua.android.handler.ui.fragments.test.second.configurers;
+package meugeninua.android.handler.ui.fragments.test.main.configurers;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -10,43 +10,43 @@ import meugeninua.android.handler.ui.fragments.common.startstop.BaseStartStopCon
 import meugeninua.android.handler.ui.fragments.common.startstop.StartStopConfigurer;
 import meugeninua.android.handler.ui.fragments.common.vm.SingleLiveEvent;
 
-public class DisplayResultConfigurer extends BaseStartStopConfigurer {
+public class DisplayRefConfigurer extends BaseStartStopConfigurer {
 
-    private final LiveData<String> resultData;
+    private final LiveData<String> refData;
 
-    public DisplayResultConfigurer(
+    public DisplayRefConfigurer(
         @NonNull StartStopConfigurer baseConfigurer,
-        @NonNull LiveData<String> resultData
+        LiveData<String> refData
     ) {
         super(baseConfigurer);
-        this.resultData = resultData;
+        this.refData = refData;
     }
 
     @Override
     public void onAttachLiveEvent(SingleLiveEvent<Object> liveEvent) {
         super.onAttachLiveEvent(liveEvent);
-        liveEvent.addSource(resultData, v -> {
-            liveEvent.setValue(new DisplayResultAction(v));
+        liveEvent.addSource(refData, ref -> {
+            liveEvent.setValue(new DisplayRefAction(ref));
         });
     }
 
     @Override
     public void onDetachLiveEvent(SingleLiveEvent<Object> liveEvent) {
         super.onDetachLiveEvent(liveEvent);
-        liveEvent.removeSource(resultData);
+        liveEvent.removeSource(refData);
     }
 }
 
-class DisplayResultAction implements BindingAction {
+class DisplayRefAction implements BindingAction {
 
-    private final CharSequence result;
+    private final String ref;
 
-    public DisplayResultAction(CharSequence result) {
-        this.result = result;
+    public DisplayRefAction(String ref) {
+        this.ref = ref;
     }
 
     @Override
     public void onAction(Binding binding) {
-        Binding.Utils.setText(binding, R.id.text_result, result);
+        Binding.Utils.setText(binding, R.id.view_model_label, ref);
     }
 }

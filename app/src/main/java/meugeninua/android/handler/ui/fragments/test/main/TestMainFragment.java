@@ -10,7 +10,9 @@ import javax.inject.Inject;
 
 import meugeninua.android.handler.R;
 import meugeninua.android.handler.ui.fragments.common.BaseFragment;
+import meugeninua.android.handler.ui.fragments.common.actions.ViewModelAction;
 import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
+import meugeninua.android.handler.ui.fragments.test.main.actions.TestMainViewModelAction;
 
 public class TestMainFragment extends BaseFragment {
 
@@ -35,5 +37,12 @@ public class TestMainFragment extends BaseFragment {
 
     public void moveForward() {
         viewModel.onMoveForward();
+    }
+
+    @Override
+    protected void onViewModelEvent(ViewModelAction<?> event) {
+        if (event instanceof TestMainViewModelAction) {
+            ((TestMainViewModelAction) event).onAction(viewModel);
+        }
     }
 }
