@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
+import meugeninua.android.handler.ui.fragments.test.first.ITestFirstViewModel;
 import meugeninua.android.handler.ui.fragments.test.first.TestFirstFragment;
 import meugeninua.android.handler.ui.fragments.test.first.TestFirstViewModel;
 
@@ -19,7 +20,7 @@ public interface TestFirstComponent {
 class TestFirstModule {
 
     @Provides
-    public static TestFirstViewModel viewModule(
+    public static ITestFirstViewModel viewModule(
         TestFirstFragment fragment
     ) {
         ViewModelProvider.Factory factory = new ViewModelProvider.NewInstanceFactory();

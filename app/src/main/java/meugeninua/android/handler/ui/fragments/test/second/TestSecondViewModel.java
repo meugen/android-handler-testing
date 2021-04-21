@@ -5,18 +5,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import java.time.Duration;
+
+import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.repository.Repository;
-import meugeninua.android.handler.ui.fragments.common.startstop.OnStartStopListener;
 import meugeninua.android.handler.ui.fragments.common.startstop.StartStopConfigurer;
-import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 import meugeninua.android.handler.ui.fragments.common.vm.SingleLiveEvent;
-import meugeninua.android.handler.ui.fragments.test.second.binding.TestSecondBinding;
 import meugeninua.android.handler.ui.fragments.test.second.configurers.DisplayResultConfigurer;
 import meugeninua.android.handler.utils.async.AsyncHandler;
 import meugeninua.android.handler.utils.async.Callbacks;
 import timber.log.Timber;
 
-public class TestSecondViewModel extends ViewModel implements IViewModel, TestSecondBinding.Listener, OnStartStopListener {
+public class TestSecondViewModel extends ViewModel implements ITestSecondViewModel {
 
     private static final String KEY_RESULT = "result";
 
@@ -40,8 +40,11 @@ public class TestSecondViewModel extends ViewModel implements IViewModel, TestSe
     public TestSecondViewModel(
         AsyncHandler asyncHandler,
         Repository repository,
+        RefHolderRepository refHolderRepository,
         SavedStateHandle handle
     ) {
+        refHolderRepository.setRef(this);
+
         this.asyncHandler = asyncHandler;
         this.repository = repository;
         this.handle = handle;
@@ -62,12 +65,13 @@ public class TestSecondViewModel extends ViewModel implements IViewModel, TestSe
             .withOnComplete(v -> handle.set(KEY_RESULT, v))
             .withOnError(Timber::e)
             .build();
-        asyncHandler.runAsync(repository.slowRest(), callbacks);
+        asyncHandler.runAsync(repository.slowRest(Duration.ofSeconds(5)), callbacks);
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
+        Timber.d("onCleared() method called");
         asyncHandler.clear();
     }
 

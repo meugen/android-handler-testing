@@ -4,28 +4,39 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import meugeninua.android.handler.R;
+import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.ui.fragments.common.actions.FragmentAction;
-import meugeninua.android.handler.ui.fragments.common.startstop.OnStartStopListener;
 import meugeninua.android.handler.ui.fragments.common.startstop.StartStopConfigurer;
-import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 import meugeninua.android.handler.ui.fragments.common.vm.SingleLiveEvent;
-import meugeninua.android.handler.ui.fragments.test.main.binding.TestMainBinding;
 import meugeninua.android.handler.ui.fragments.test.main.configurers.DisplayFirstConfigurer;
+import meugeninua.android.handler.ui.fragments.test.main.configurers.DisplayRefConfigurer;
+import meugeninua.android.handler.ui.fragments.test.main.configurers.RefreshRefConfigurer;
 import meugeninua.android.handler.ui.fragments.test.second.TestSecondFragment;
 
-public class TestMainViewModel extends ViewModel implements IViewModel,
-    TestMainBinding.Listener, OnStartStopListener {
+public class TestMainViewModel extends ViewModel implements ITestMainViewModel {
 
     private final SingleLiveEvent<Object> liveEvent = new SingleLiveEvent<>();
     private final StartStopConfigurer configurer;
 
-    public TestMainViewModel() {
+    private final MutableLiveData<String> refData = new MutableLiveData<>();
+
+    public TestMainViewModel(
+        RefHolderRepository refHolderRepository
+    ) {
         StartStopConfigurer configurer = StartStopConfigurer.EMPTY;
         configurer = new DisplayFirstConfigurer(configurer);
+        configurer = new RefreshRefConfigurer(configurer, refHolderRepository);
+        configurer = new DisplayRefConfigurer(configurer, refData);
         this.configurer = configurer;
+    }
+
+    @Override
+    public void onRefreshRef(@NonNull String ref) {
+        refData.setValue(ref);
     }
 
     @NonNull
@@ -34,6 +45,7 @@ public class TestMainViewModel extends ViewModel implements IViewModel,
         return liveEvent;
     }
 
+    @Override
     public void onMoveForward() {
         liveEvent.setValue(new NavigateForwardAction());
     }

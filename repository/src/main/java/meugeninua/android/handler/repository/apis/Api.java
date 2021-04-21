@@ -2,6 +2,7 @@ package meugeninua.android.handler.repository.apis;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface Api {
 
@@ -10,5 +11,5 @@ public interface Api {
      * @return Call response
      */
     @GET("/slow-rest")
-    Call<String> slowRest();
+    Call<String> slowRest(@Query("delay") String delay);
 }
