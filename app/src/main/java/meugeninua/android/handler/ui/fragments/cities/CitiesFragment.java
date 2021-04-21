@@ -15,7 +15,7 @@ import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 public class CitiesFragment extends BaseFragment {
 
     @Inject
-    public CitiesViewModel viewModel;
+    public ICitiesViewModel viewModel;
 
     public CitiesFragment() {
         super(R.layout.fragment_cities);

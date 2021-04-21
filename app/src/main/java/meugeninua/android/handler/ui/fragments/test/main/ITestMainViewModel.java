@@ -10,4 +10,5 @@ public interface ITestMainViewModel extends IViewModel,
     TestMainBinding.Listener, OnStartStopListener {
 
     void onRefreshRef(@NonNull String ref);
+    void onMoveForward();
 }

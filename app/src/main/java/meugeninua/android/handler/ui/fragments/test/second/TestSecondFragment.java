@@ -15,7 +15,7 @@ import meugeninua.android.handler.ui.fragments.test.second.binding.TestSecondBin
 public class TestSecondFragment extends BaseFragment {
 
     @Inject
-    public TestSecondViewModel viewModel;
+    public ITestSecondViewModel viewModel;
 
     public TestSecondFragment() {
         super(R.layout.fragment_test_second);

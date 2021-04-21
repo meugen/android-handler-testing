@@ -7,6 +7,7 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import meugeninua.android.handler.ui.fragments.cities.CitiesFragment;
 import meugeninua.android.handler.ui.fragments.cities.CitiesViewModel;
+import meugeninua.android.handler.ui.fragments.cities.ICitiesViewModel;
 
 @Module
 public interface CitiesComponent {
@@ -19,7 +20,7 @@ public interface CitiesComponent {
 class CitiesModule {
 
     @Provides
-    public static CitiesViewModel viewModel(CitiesFragment fragment) {
+    public static ICitiesViewModel viewModel(CitiesFragment fragment) {
         ViewModelProvider.Factory factory = new ViewModelProvider.NewInstanceFactory();
         return new ViewModelProvider(fragment, factory).get(CitiesViewModel.class);
     }

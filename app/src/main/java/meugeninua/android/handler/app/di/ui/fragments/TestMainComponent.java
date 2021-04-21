@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import meugeninua.android.handler.repository.RefHolderRepository;
+import meugeninua.android.handler.ui.fragments.test.main.ITestMainViewModel;
 import meugeninua.android.handler.ui.fragments.test.main.TestMainFragment;
 import meugeninua.android.handler.ui.fragments.test.main.TestMainViewModel;
 
@@ -22,7 +23,7 @@ public interface TestMainComponent {
 class TestMainModule {
 
     @Provides
-    public static TestMainViewModel viewModel(
+    public static ITestMainViewModel viewModel(
         TestMainFragment fragment,
         RefHolderRepository refHolderRepository
     ) {

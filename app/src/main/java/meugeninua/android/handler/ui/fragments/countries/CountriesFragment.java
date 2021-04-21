@@ -15,7 +15,7 @@ import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 public class CountriesFragment extends BaseFragment {
 
     @Inject
-    public CountriesViewModel viewModel;
+    public ICountriesViewModel viewModel;
 
     public CountriesFragment() {
         super(R.layout.fragment_countries);

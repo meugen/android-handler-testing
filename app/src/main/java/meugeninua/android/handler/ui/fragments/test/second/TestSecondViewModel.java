@@ -9,17 +9,14 @@ import java.time.Duration;
 
 import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.repository.Repository;
-import meugeninua.android.handler.ui.fragments.common.startstop.OnStartStopListener;
 import meugeninua.android.handler.ui.fragments.common.startstop.StartStopConfigurer;
-import meugeninua.android.handler.ui.fragments.common.vm.IViewModel;
 import meugeninua.android.handler.ui.fragments.common.vm.SingleLiveEvent;
-import meugeninua.android.handler.ui.fragments.test.second.binding.TestSecondBinding;
 import meugeninua.android.handler.ui.fragments.test.second.configurers.DisplayResultConfigurer;
 import meugeninua.android.handler.utils.async.AsyncHandler;
 import meugeninua.android.handler.utils.async.Callbacks;
 import timber.log.Timber;
 
-public class TestSecondViewModel extends ViewModel implements IViewModel, TestSecondBinding.Listener, OnStartStopListener {
+public class TestSecondViewModel extends ViewModel implements ITestSecondViewModel {
 
     private static final String KEY_RESULT = "result";
 

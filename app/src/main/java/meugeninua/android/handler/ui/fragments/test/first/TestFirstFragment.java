@@ -15,7 +15,7 @@ import meugeninua.android.handler.ui.fragments.test.first.binding.TestFirstBindi
 public class TestFirstFragment extends BaseFragment {
 
     @Inject
-    public TestFirstViewModel viewModel;
+    public ITestFirstViewModel viewModel;
 
     public TestFirstFragment() {
         super(R.layout.fragment_test_first);

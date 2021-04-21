@@ -14,6 +14,7 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import meugeninua.android.handler.repository.RefHolderRepository;
 import meugeninua.android.handler.repository.Repository;
+import meugeninua.android.handler.ui.fragments.test.second.ITestSecondViewModel;
 import meugeninua.android.handler.ui.fragments.test.second.TestSecondFragment;
 import meugeninua.android.handler.ui.fragments.test.second.TestSecondViewModel;
 import meugeninua.android.handler.utils.async.AsyncHandler;
@@ -29,7 +30,7 @@ public interface TestSecondComponent {
 class TestSecondModule {
 
     @Provides
-    public static TestSecondViewModel viewModel(
+    public static ITestSecondViewModel viewModel(
         TestSecondFragment fragment,
         Repository repository,
         RefHolderRepository refHolderRepository,

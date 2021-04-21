@@ -17,7 +17,7 @@ import meugeninua.android.handler.ui.fragments.test.main.actions.TestMainViewMod
 public class TestMainFragment extends BaseFragment {
 
     @Inject
-    public TestMainViewModel viewModel;
+    public ITestMainViewModel viewModel;
 
     public TestMainFragment() {
         super(R.layout.fragment_test_main);

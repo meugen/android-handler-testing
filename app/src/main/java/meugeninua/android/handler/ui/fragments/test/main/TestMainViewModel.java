@@ -45,6 +45,7 @@ public class TestMainViewModel extends ViewModel implements ITestMainViewModel {
         return liveEvent;
     }
 
+    @Override
     public void onMoveForward() {
         liveEvent.setValue(new NavigateForwardAction());
     }
