@@ -23,11 +23,10 @@ platform :android do
 
   desc "Decrypt keystores"
   lane :decrypt_keystores do
-    sh "pwd"
-    sh "./scripts/decrypt_debug_keystore.sh"
-    sh "./scripts/decrypt_alpha_keystore.sh"
-    sh "./scripts/decrypt_release_keystore.sh"
-    sh "./scripts/decrypt_properties_keystore.sh"
+    sh "../scripts/decrypt_debug_keystore.sh"
+    sh "../scripts/decrypt_alpha_keystore.sh"
+    sh "../scripts/decrypt_release_keystore.sh"
+    sh "../scripts/decrypt_properties_keystore.sh"
   end
 
   desc "Runs all tests"
