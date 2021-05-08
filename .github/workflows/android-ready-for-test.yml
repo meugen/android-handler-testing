@@ -56,7 +56,7 @@ jobs:
         uses: meugen/github-actions-slack-message@v1.2.2
         with:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          text: ${{ format('Created executors build at {0} {1}', steps.upload_rxjava_to_diawi.outputs.url, github.event.head_commit.message) }}
+          text: ${{ format('Created rxjava build at {0} {1}', steps.upload_rxjava_to_diawi.outputs.url, github.event.head_commit.message) }}
           color: good
           image-url: ${{ steps.upload_rxjava_to_diawi.outputs.qrcode }}
       - name: Upload coroutines alpha to diawi.com
