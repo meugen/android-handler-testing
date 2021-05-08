@@ -23,10 +23,12 @@ platform :android do
 
   desc "Decrypt keystores"
   lane :decrypt_keystores do
-    sh ENV['ROOT_PATH'] + "/scripts/decrypt_debug_keystore.sh"
-    sh ENV['ROOT_PATH'] + "/scripts/decrypt_alpha_keystore.sh"
-    sh ENV['ROOT_PATH'] + "/scripts/decrypt_release_keystore.sh"
-    sh ENV['ROOT_PATH'] + "/scripts/decrypt_properties_keystore.sh"
+    Dir.chdir("..") do
+      sh "./scripts/decrypt_debug_keystore.sh"
+      sh "./scripts/decrypt_alpha_keystore.sh"
+      sh "./scripts/decrypt_release_keystore.sh"
+      sh "./scripts/decrypt_properties_keystore.sh"
+    end
   end
 
   desc "Runs all tests"
