@@ -25,7 +25,6 @@ jobs:
           KEYSTORE_ALPHA_PASSPHRASE: ${{ secrets.KEYSTORE_ALPHA_PASSPHRASE }}
           KEYSTORE_RELEASE_PASSPHRASE: ${{ secrets.KEYSTORE_RELEASE_PASSPHRASE }}
           KEYSTORE_PROPERTIES_PASSPHRASE: ${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}
-          ROOT_PATH: ${{ github.action_path }}
       - name: Run tests
         run: bundle exec fastlane tests
       - name: Build alpha

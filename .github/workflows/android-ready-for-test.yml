@@ -2,7 +2,7 @@ name: Android ready-for-test CI
 
 on:
   push:
-    branches: [ ready-for-test ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,15 +15,60 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
       - name: Decrypt keystores
-        run: ./scripts/decrypt_alpha_keystore.sh \
-          && ./scripts/decrypt_properties_keystore.sh
+        run: bundle exec fastlane decrypt_keystores
         env:
+          KEYSTORE_DEBUG_PASSPHRASE: ${{ secrets.KEYSTORE_DEBUG_PASSPHRASE }}
           KEYSTORE_ALPHA_PASSPHRASE: ${{ secrets.KEYSTORE_ALPHA_PASSPHRASE }}
+          KEYSTORE_RELEASE_PASSPHRASE: ${{ secrets.KEYSTORE_RELEASE_PASSPHRASE }}
           KEYSTORE_PROPERTIES_PASSPHRASE: ${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}
       - name: Build alpha
-        run: ./gradlew app:assembleExecutorsAlpha
+        run: bundle exec fastlane build_alpha
       - name: Upload to firebase
-        run: ./gradlew app:appDistributionUploadExecutorsAlpha
+        run: bundle exec fastlane distribute_alpha_to_firebase
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Upload executors alpha to diawi.com
+        id: upload_executors_to_diawi
+        uses: meugen/action-upload-diawi@v1.1.4
+        with:
+          token: ${{ secrets.DIAWI_TOKEN }}
+          file: app/build/outputs/apk/executors/alpha/app-executors-alpha.apk
+      - name: Send slack message for executors build
+        uses: meugen/github-actions-slack-message@v1.2.2
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          text: ${{ format('Created executors build at {0} {1}', steps.upload_executors_to_diawi.outputs.url, github.event.head_commit.message) }}
+          color: good
+          image-url: ${{ steps.upload_executors_to_diawi.outputs.qrcode }}
+      - name: Upload rxjava alpha to diawi.com
+          id: upload_rxjava_to_diawi
+          uses: meugen/action-upload-diawi@v1.1.4
+          with:
+            token: ${{ secrets.DIAWI_TOKEN }}
+            file: app/build/outputs/apk/rxjava/alpha/app-rxjava-alpha.apk
+      - name: Send slack message for rxjava build
+        uses: meugen/github-actions-slack-message@v1.2.2
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          text: ${{ format('Created executors build at {0} {1}', steps.upload_rxjava_to_diawi.outputs.url, github.event.head_commit.message) }}
+          color: good
+          image-url: ${{ steps.upload_rxjava_to_diawi.outputs.qrcode }}
+      - name: Upload coroutines alpha to diawi.com
+          id: upload_coroutines_to_diawi
+          uses: meugen/action-upload-diawi@v1.1.4
+          with:
+            token: ${{ secrets.DIAWI_TOKEN }}
+            file: app/build/outputs/apk/coroutines/alpha/app-coroutines-alpha.apk
+      - name: Send slack message for coroutines build
+        uses: meugen/github-actions-slack-message@v1.2.2
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          text: ${{ format('Created coroutines build at {0} {1}', steps.upload_coroutines_to_diawi.outputs.url, github.event.head_commit.message) }}
+          color: good
+          image-url: ${{ steps.upload_coroutines_to_diawi.outputs.qrcode }}
