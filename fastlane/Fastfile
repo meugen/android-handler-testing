@@ -16,18 +16,61 @@
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
+  desc "Clean project"
+  lane :clean do
+    gradle(task: "clean")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+  desc "Decrypt keystores"
+  lane :decrypt_keystores do
+    sh "./scripts/decrypt_debug_keystore.sh"
+    sh "./scripts/decrypt_alpha_keystore.sh"
+    sh "./scripts/decrypt_release_keystore.sh"
+    sh "./scripts/decrypt_properties_keystore.sh"
+  end
+
+  desc "Runs all tests"
+  lane :tests do
+    gradle(task: "async-executors:testDebug")
+    gradle(task: "async-rxjava:testDebug")
+    gradle(task: "async-coroutines:testDebug")
+
+    gradle(task: "app:testExecutorsDebug")
+    gradle(task: "app:testRxjavaDebug")
+    gradle(task: "app:testCoroutinesDebug")
+  end
+
+  desc "Create alpha builds"
+  lane :build_alpha do
+    gradle(task: "app:assembleExecutorsAlpha")
+    gradle(task: "app:assembleRxjavaAlpha")
+    gradle(task: "app:assembleCoroutinesAlpha")
+  end
+
+  desc "Create release builds"
+  lane :build_release do
+    gradle(task: "app:assembleExecutorsRelease")
+    gradle(task: "app:assembleRxjavaRelease")
+    gradle(task: "app:assembleCoroutinesRelease")
+  end
+
+  desc "Distribute alpha to firebase"
+  lane :distribute_alpha_to_firebase do
+    firebase_app_distribution(
+      app: "1:431931058442:android:f86b84b04a541734e172f3",
+      groups: "testers",
+      apk_path: "app/build/outputs/apk/executors/alpha/app-executors-alpha.apk"
+    )
+    firebase_app_distribution(
+      app: "1:431931058442:android:9075cca7e68d8300e172f3",
+      groups: "testers",
+      apk_path: "app/build/outputs/apk/rxjava/alpha/app-rxjava-alpha.apk"
+    )
+    firebase_app_distribution(
+      app: "1:431931058442:android:564844d92fd95a24e172f3",
+      groups: "testers",
+      apk_path: "app/build/outputs/apk/coroutines/alpha/app-coroutines-alpha.apk"
+    )
   end
 
   desc "Deploy a new version to the Google Play"

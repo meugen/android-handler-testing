@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id 'com.google.firebase.appdistribution'
     id 'androidx.navigation.safeargs'
 }
 apply from: '../dependencies.gradle'
@@ -17,6 +16,7 @@ android {
         applicationId "meugeninua.android.handler"
         minSdkVersion 21
         targetSdkVersion 30
+        compileSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -61,9 +61,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable true
 
-            firebaseAppDistribution {
-                testers="meugen.82@gmail.com"
-            }
             matchingFallbacks = ['release']
         }
         release {
