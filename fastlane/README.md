@@ -21,6 +21,11 @@ or alternatively using `brew install fastlane`
 fastlane android clean
 ```
 Clean project
+### android decrypt_keystores
+```
+fastlane android decrypt_keystores
+```
+Decrypt keystores
 ### android tests
 ```
 fastlane android tests
@@ -41,11 +46,6 @@ Create release builds
 fastlane android distribute_alpha_to_firebase
 ```
 Distribute alpha to firebase
-### android send_slack_message
-```
-fastlane android send_slack_message
-```
-Send slack message
 ### android deploy
 ```
 fastlane android deploy
