@@ -47,11 +47,11 @@ jobs:
           color: good
           image-url: ${{ steps.upload_executors_to_diawi.outputs.qrcode }}
       - name: Upload rxjava alpha to diawi.com
-          id: upload_rxjava_to_diawi
-          uses: meugen/action-upload-diawi@v1.1.4
-          with:
-            token: ${{ secrets.DIAWI_TOKEN }}
-            file: app/build/outputs/apk/rxjava/alpha/app-rxjava-alpha.apk
+        id: upload_rxjava_to_diawi
+        uses: meugen/action-upload-diawi@v1.1.4
+        with:
+          token: ${{ secrets.DIAWI_TOKEN }}
+          file: app/build/outputs/apk/rxjava/alpha/app-rxjava-alpha.apk
       - name: Send slack message for rxjava build
         uses: meugen/github-actions-slack-message@v1.2.2
         with:
