@@ -47,6 +47,7 @@ class DisplayResultAction implements BindingAction {
 
     @Override
     public void onAction(Binding binding) {
-        Binding.Utils.setText(binding, R.id.text_result, result);
+        Binding.Utils utils = new Binding.Utils(binding);
+        utils.setText(R.id.text_result, result);
     }
 }

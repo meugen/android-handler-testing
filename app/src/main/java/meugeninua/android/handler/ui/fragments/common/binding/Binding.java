@@ -72,8 +72,13 @@ public class Binding implements LifecycleObserver {
 
     public static class Utils {
 
-        public static void setOnClickListener(
-            @NonNull Binding binding,
+        private final Binding binding;
+
+        public Utils(@NonNull Binding binding) {
+            this.binding = binding;
+        }
+
+        public void setOnClickListener(
             @IdRes int viewId,
             View.OnClickListener listener
         ) {
@@ -81,17 +86,15 @@ public class Binding implements LifecycleObserver {
             view.setOnClickListener(listener);
         }
 
-        public static void setText(
-            @NonNull Binding binding,
+        public void setText(
             @IdRes int viewId,
             @StringRes int textId
         ) {
             CharSequence text = binding.getView().getContext().getText(textId);
-            setText(binding, viewId, text);
+            setText(viewId, text);
         }
 
-        public static void setText(
-            @NonNull Binding binding,
+        public void setText(
             @IdRes int viewId,
             @Nullable CharSequence text
         ) {
