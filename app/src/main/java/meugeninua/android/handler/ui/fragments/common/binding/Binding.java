@@ -47,7 +47,7 @@ public class Binding implements LifecycleObserver {
     }
 
     @Nullable
-    private View find(@IdRes int viewId) {
+    public View find(@IdRes int viewId) {
         if (rootView == null) {
             return null;
         }
@@ -83,8 +83,8 @@ public class Binding implements LifecycleObserver {
         @IdRes int viewId,
         @StringRes int textId
     ) {
-        CharSequence text = getView().getContext().getText(textId);
-        setText(viewId, text);
+        TextView textView = get(viewId);
+        textView.setText(textId);
     }
 
     public void setText(
