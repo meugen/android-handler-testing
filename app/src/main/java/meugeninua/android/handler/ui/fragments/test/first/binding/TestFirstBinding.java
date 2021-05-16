@@ -8,7 +8,7 @@ import meugeninua.android.handler.ui.fragments.common.binding.Binding;
 public class TestFirstBinding {
 
     public static void setupListeners(@NonNull Binding binding, @NonNull Listener listener) {
-        Binding.Utils.setOnClickListener(binding, R.id.button_move, v -> listener.onMoveClick());
+        binding.setOnClickListener(R.id.button_move, v -> listener.onMoveClick());
     }
 
     public interface Listener {

@@ -47,6 +47,6 @@ class DisplayRefAction implements BindingAction {
 
     @Override
     public void onAction(Binding binding) {
-        Binding.Utils.setText(binding, R.id.view_model_label, ref);
+        binding.setText(R.id.view_model_label, ref);
     }
 }

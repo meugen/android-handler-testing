@@ -126,7 +126,9 @@ dependencies {
     implementation utils.timber
     coreLibraryDesugaring utils.desugar
 
+    //testImplementation project(':utils')
     testImplementation test.junit
+    testImplementation test.mockito
     androidTestImplementation test.androidxExt
     androidTestImplementation test.androidxEspresso
 }

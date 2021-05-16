@@ -8,7 +8,7 @@ import meugeninua.android.handler.ui.fragments.common.binding.Binding;
 public class TestSecondBinding {
 
     public static void setupListeners(@NonNull Binding binding, @NonNull Listener listener) {
-        Binding.Utils.setOnClickListener(binding, R.id.request_api, v -> listener.onRequestApiClick());
+        binding.setOnClickListener(R.id.request_api, v -> listener.onRequestApiClick());
     }
 
     public interface Listener {
