@@ -22,11 +22,6 @@ public class DisplayFirstConfigurer extends BaseStartStopConfigurer {
         super.onAttachLiveEvent(liveEvent);
         liveEvent.setValue(new DisplayFirstAction());
     }
-
-    @Override
-    public void onDetachLiveEvent(SingleLiveEvent<Object> liveEvent) {
-        super.onDetachLiveEvent(liveEvent);
-    }
 }
 
 class DisplayFirstAction implements FragmentAction {
